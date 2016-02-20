@@ -1,0 +1,40 @@
+<div class="form-group">
+    <form name="registerForm" ng-submit="register()" novalidate>
+
+        <p>User registration</p>
+        <p ng-show="message3">{{message3}}</p>
+
+            <fieldset>
+                <input class="form-control" type="text" name="firstName" placeholder="First Name"
+                       ng-model="user.firstName" ng-required="true">
+                <p class="error validationerror"
+                   ng-show="registerForm.firstName.$invalid && registerForm.firstName.$touched">
+                    First name required</p>
+
+                <input class="form-control" type="text" name="lastName" placeholder="Last Name"
+                       ng-model="user.lastName" ng-required="true">
+                <p class="error validationerror"
+                   ng-show="registerForm.lastName.$invalid && registerForm.lastName.$touched">
+                    Last name required</p>
+
+                <input class="form-control" type="email" name="email" placeholder="Email"
+                       ng-model="user.email" ng-required="true">
+                <p class="error validationerror"
+                   ng-show="registerForm.email.$invalid && registerForm.email.$touched">
+                    Must be a valid email</p>
+
+                <input class="form-control" type="password" name="password" placeholder="Password"
+                       ng-model="user.password" ng-required="true">
+                <p class="error validationerror"
+                   ng-show="registerForm.password.$invalid && registerForm.email.$touched">
+                    Password is required</p>
+
+            </fieldset>
+
+            <button  type="submit" class="btn"
+                    ng-disabled="registerForm.$invalid">Register</button>
+            <p>or <a href="#/login">login</a></p>
+
+
+    </form>
+    </div>
