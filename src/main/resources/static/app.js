@@ -1,4 +1,6 @@
-var bigApp = angular.module('bigApp', ['ngRoute']);
+var bigApp = angular.module('bigApp', ['ngRoute', 'firebase']);
+
+    bigApp.constant('FIREBASE_URL', 'https://testbigapp.firebaseio.com/');
 
     bigApp.config(['$routeProvider', function($routeProvider){
         $routeProvider

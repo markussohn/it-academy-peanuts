@@ -1,16 +1,27 @@
 bigApp
     .controller('RegisterController', ['$scope', function($scope){
-        $scope.message = "Wanna register something?";
+
     }])
     .controller('OverviewController', ['$scope', function($scope){
-        $scope.message = "Wanna see something?";
+
     }])
-    .controller('LoginController', ['$scope', function($scope){
-            $scope.message = "PRISIJUNKITE";
+    .controller('LoginController', ['$scope', '$firebaseAuth', 'FIREBASE_URL',
+        function($scope, $firebaseAuth, FIREBASE_URL){
+            var ref = new Firebase(FIREBASE_URL);
+            var auth = $firebaseAuth(ref);
+
             $scope.login = function(){
-                $scope.message2 = "Welcome " + $scope.user.email;
-            };
+                $scope.message = "Welcome " + $scope.user.email;
+            }; //login
+
             $scope.register = function() {
-                $scope.message3 = "Welcome " + $scope.user.firstName;
-            };
-    }]);
+                auth.$createUser({
+                    email: $scope.user.email,
+                    password: $scope.user.password
+                }).then(function(regUser){
+                    $scope.message = "Hi " + $scope.user.firstName + ", thanks for registering!";
+                }).catch(function(error){
+                    $scope.message = error.message;
+                });
+            }; //register
+    }]); //controller
